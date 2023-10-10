@@ -1,5 +1,5 @@
 converterVersion = "001000006"
-automaticUpdates = True
+automaticUpdates = True #Replace the "True" with "False" if you don't want automatic Updates.
 
 from gi.repository import Nautilus, GObject
 from typing import List
