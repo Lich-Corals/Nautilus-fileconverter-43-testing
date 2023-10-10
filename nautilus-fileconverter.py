@@ -20,8 +20,7 @@ except ImportError:
 
 if automaticUpdates:
     with urllib.request.urlopen(
-            #"https://raw.githubusercontent.com/Lich-Corals/Nautilus-fileconverter-43/main/nautilus-fileconverter.py") as f:                #Main repo
-            "https://raw.githubusercontent.com/Lich-Corals/Nautilus-fileconverter-43-testing/main/nautilus-fileconverter.py") as f:         #Testing repo
+            "https://raw.githubusercontent.com/Lich-Corals/Nautilus-fileconverter-43/main/nautilus-fileconverter.py") as f:                #Main repo
         onlineFile = f.read().decode().strip()
     if converterVersion not in onlineFile:
         print("update!")
