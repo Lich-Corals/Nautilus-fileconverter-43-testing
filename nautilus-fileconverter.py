@@ -1,4 +1,4 @@
-converterVersion = "001000006"
+converterVersion = "001000005"
 automaticUpdates = True
 
 from gi.repository import Nautilus, GObject
@@ -27,7 +27,7 @@ if automaticUpdates:
         print("update!")
         currentPath = str(pathlib.Path(__file__).parent.resolve())
         if "/home/" in currentPath:
-            fileUpdatePath = f"{currentPath}/{os.path.basename(__file__)}.d"
+            fileUpdatePath = f"{currentPath}/{os.path.basename(__file__)}"
             with open(fileUpdatePath, 'w') as file:
                 file.write(onlineFile)
         else:
