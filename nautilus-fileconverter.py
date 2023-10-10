@@ -20,7 +20,7 @@ except ImportError:
 
 if automaticUpdates:
     with urllib.request.urlopen(
-            "https://raw.githubusercontent.com/Lich-Corals/Nautilus-fileconverter-43/main/nautilus-fileconverter.py") as f:                #Main repo
+            "https://raw.githubusercontent.com/Lich-Corals/Nautilus-fileconverter-43/main/nautilus-fileconverter.py") as f:
         onlineFile = f.read().decode().strip()
     if converterVersion not in onlineFile:
         print("update!")
@@ -109,7 +109,7 @@ class FileConverterMenuProvider(GObject.GObject, Nautilus.MenuProvider):
                            {'name': 'WAV'}]
 
     def get_file_items(self, *args) -> List[Nautilus.MenuItem]:
-        files = args[-1]            # legacy support for stuff earlier than G43
+        files = args[-1]
         for file in files:
             print(file.get_mime_type())
             file_mime = file.get_mime_type()
