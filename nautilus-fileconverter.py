@@ -1,5 +1,5 @@
-#version 001000005
-converterVersion = "001000005"
+#version 001000006
+converterVersion = "001000006"
 automaticUpdates = True
 
 from gi.repository import Nautilus, GObject
@@ -27,7 +27,14 @@ if automaticUpdates:
         versionLine = f.readline().decode().strip()
     if converterVersion not in versionLine:
         print("update!")
-        print(onlineFile)
+
+        currentPath = str(pathlib.Path(__file__).parent.resolve())
+        print(currentPath)
+        if "/home/" in currentPath:
+            print("Home")
+            fileUpdatePath = f"{currentPath}/{os.path.basename(__file__)}"
+            with open(fileUpdatePath, 'w') as file:
+                file.write(onlineFile)
     else:
         print("up to date!")
 
