@@ -1,4 +1,4 @@
-converterVersion = "001000005"
+converterVersion = "001000006"
 automaticUpdates = True
 
 from gi.repository import Nautilus, GObject
@@ -23,20 +23,17 @@ if automaticUpdates:
             #"https://raw.githubusercontent.com/Lich-Corals/Nautilus-fileconverter-43/main/nautilus-fileconverter.py") as f:                #Main repo
             "https://raw.githubusercontent.com/Lich-Corals/Nautilus-fileconverter-43-testing/main/nautilus-fileconverter.py") as f:         #Testing repo
         onlineFile = f.read().decode().strip()
-        versionLine = f.readline().decode().strip()
-    if converterVersion not in versionLine:
+    if converterVersion not in onlineFile:
         print("update!")
         currentPath = str(pathlib.Path(__file__).parent.resolve())
         if "/home/" in currentPath:
-            fileUpdatePath = f"{currentPath}/{os.path.basename(__file__)}"
+            fileUpdatePath = f"{currentPath}/{os.path.basename(__file__)}.d"
             with open(fileUpdatePath, 'w') as file:
                 file.write(onlineFile)
         else:
             print("updating only supported in home!")
-    else:
-        print("up to date!")
 
-#print = lambda *wish, **verbosity: None    # comment it out, if you wish debug printing
+print = lambda *wish, **verbosity: None    # comment it out, if you wish debug printing
 
 class FileConverterMenuProvider(GObject.GObject, Nautilus.MenuProvider):
     READ_FORMATS_IMAGE = ('image/jpeg',
@@ -129,7 +126,6 @@ class FileConverterMenuProvider(GObject.GObject, Nautilus.MenuProvider):
                 return self.__submenu_builder(self.WRITE_FORMATS_VIDEO,
                                               callback=self.convert_video,
                                               files=files)
-
 
     def __submenu_builder(self, formats, callback, files):
         top_menuitem = Nautilus.MenuItem(
