@@ -1,3 +1,7 @@
+#version 001000005
+converterVersion = "001000005"
+automaticUpdates = True
+
 from gi.repository import Nautilus, GObject
 from typing import List
 from PIL import Image, UnidentifiedImageError
@@ -5,6 +9,7 @@ from urllib.parse import urlparse, unquote
 from pathlib import Path
 import pathlib
 import os, shlex
+import urllib.request
 
 pyheifImported = True
 
@@ -14,7 +19,19 @@ except ImportError:
     print(f"WARNING(Nautilus-file-converter): \"pyheif\" not found, if you want to convert from heif format, install the package using \"pip install pyheif\"." )
     pyheifImported = False
 
-print = lambda *wish, **verbosity: None    # comment it out, if you wish debug printing
+if automaticUpdates:
+    with urllib.request.urlopen(
+            #"https://raw.githubusercontent.com/Lich-Corals/Nautilus-fileconverter-43/main/nautilus-fileconverter.py") as f:                #Main repo
+            "https://raw.githubusercontent.com/Lich-Corals/Nautilus-fileconverter-43-testing/main/nautilus-fileconverter.py") as f:         #Testing repo
+        onlineFile = f.read().decode().strip()
+        versionLine = f.readline().decode().strip()
+    if converterVersion not in versionLine:
+        print("update!")
+        print(onlineFile)
+    else:
+        print("up to date!")
+
+#print = lambda *wish, **verbosity: None    # comment it out, if you wish debug printing
 
 class FileConverterMenuProvider(GObject.GObject, Nautilus.MenuProvider):
     READ_FORMATS_IMAGE = ('image/jpeg',
