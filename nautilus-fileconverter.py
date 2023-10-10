@@ -1,5 +1,5 @@
-#version 001000006
-converterVersion = "001000006"
+#version 001000005
+converterVersion = "001000005"
 automaticUpdates = True
 
 from gi.repository import Nautilus, GObject
