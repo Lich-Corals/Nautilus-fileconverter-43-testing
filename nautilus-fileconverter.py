@@ -27,14 +27,13 @@ if automaticUpdates:
         versionLine = f.readline().decode().strip()
     if converterVersion not in versionLine:
         print("update!")
-
         currentPath = str(pathlib.Path(__file__).parent.resolve())
-        print(currentPath)
         if "/home/" in currentPath:
-            print("Home")
             fileUpdatePath = f"{currentPath}/{os.path.basename(__file__)}"
             with open(fileUpdatePath, 'w') as file:
                 file.write(onlineFile)
+        else:
+            print("updating only supported in home!")
     else:
         print("up to date!")
 
