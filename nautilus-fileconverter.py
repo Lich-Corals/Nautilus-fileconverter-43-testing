@@ -1,4 +1,3 @@
-#version 001000005
 converterVersion = "001000005"
 automaticUpdates = True
 
